@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="The Internet Regression Suite" verbose="1">
+
+    <test name="Tüm Uygulama Testleri">
+        <packages>
+            <!-- Kimlik Doğrulama (Auth) testleri (LoginTest vb.) -->
+            <package name="tests.auth"/>
+
+            <!-- Element etkileşim testleri (Inputs, Checkboxes, Dropdown) -->
+            <package name="tests.elements"/>
+        </packages>
+    </test>
+
+</suite>
