@@ -1,6 +1,7 @@
 package base;
 
 import core.ConfigReader;
+import core.ExecutionListener;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,15 +22,23 @@ public class BaseTest {
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
+
+            // YENİ VE KESİN ÇÖZÜM: Testi gizli sekmede başlatarak Chrome'un tüm şifre ve sızıntı uyarılarını pasifize ediyoruz
+            options.addArguments("--incognito");
+
             Map<String, Object> prefs = new HashMap<>();
             prefs.put("credentials_enable_service", false);
             prefs.put("profile.password_manager_enabled", false);
             options.setExperimentalOption("prefs", prefs);
+
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--disable-extensions");
             options.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
-            driver = new ChromeDriver(options);
+            // Dinleyici (Listener) Entegrasyonu
+            WebDriver originalDriver = new ChromeDriver(options);
+            ExecutionListener listener = new ExecutionListener();
+            driver = new org.openqa.selenium.support.events.EventFiringDecorator<>(listener).decorate(originalDriver);
         }
 
         driver.manage().window().maximize();
