@@ -9,7 +9,6 @@ import pages.base.BasePage;
 public class KeyPressesPage extends BasePage {
 
     // Locator'lar
-    private By targetInput = By.id("target");
     private By resultText = By.id("result");
 
     public KeyPressesPage(WebDriver driver) {
