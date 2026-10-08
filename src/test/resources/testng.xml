@@ -8,6 +8,10 @@
 
             <!-- Element etkileşim testleri (Inputs, Checkboxes, Dropdown) -->
             <package name="tests.elements"/>
+
+            <!-- Fare ve Klavye Etkileşim testleri (Hovers, ContextMenu, KeyPresses) -->
+            <package name="tests.interactions"/>
+
         </packages>
     </test>
 
